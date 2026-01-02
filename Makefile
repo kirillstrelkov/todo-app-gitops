@@ -11,7 +11,13 @@ decrypt:
 	sops --decrypt ./overlays/production/secrets.yaml > ./dec/secrets-prod.yaml && \
 	sops --decrypt ./overlays/staging/secrets.yaml > ./dec/secrets-staging.yaml
 
-argocd:
+ctx:
 	kubectx k3d-k3s-default
+
+argocd: ctx
 	kubectl apply -f argocd-apps/production.yaml
 	kubectl apply -f argocd-apps/staging.yaml
+
+clean: ctx
+	kubectl delete -f argocd-apps/production.yaml || true
+	kubectl delete -f argocd-apps/staging.yaml || true
