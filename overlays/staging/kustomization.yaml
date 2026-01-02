@@ -10,7 +10,7 @@ images:
   newTag: a1f2e4f64863b314e95d27668e7d204b08ff70d7
 - name: TODO_APP_APP
   newName: kirillstrelkov/todo-app-app
-  newTag: a1f2e4f64863b314e95d27668e7d204b08ff70d7
+  newTag: 922453d65276f7af5716f1fd6e39147550dba36e
 - name: TODO_BACKEND_APP
   newName: kirillstrelkov/todo-backend-app
   newTag: db66a6506f3f89793a30fb90a977b91eb99d5f03
