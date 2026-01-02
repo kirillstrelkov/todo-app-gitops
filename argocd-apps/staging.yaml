@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/kirillstrelkov/todo-app-gitops.git"
+    targetRevision: main
+    path: overlays/staging
+    plugin:
+      name: "custom-argocd-cmp-sops"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: project-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

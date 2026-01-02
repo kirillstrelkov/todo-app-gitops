@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: todo-app-gke
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/kirillstrelkov/todo-app-gitops.git"
+    targetRevision: "*.*"
+    path: overlays/production
+    plugin:
+      name: "custom-argocd-cmp-sops"
+  destination:
+    server: https://35.228.130.152
+    namespace: project-prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

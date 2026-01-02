@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todo-app-cm
+data:
+  IMG_PATH: "/tmp/image/image.jpg"
+  IMG_URL: "https://picsum.photos/%d"
+  POSTS_URL: "http://todo-backend-svc:8085/posts"
