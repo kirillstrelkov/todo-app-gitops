@@ -21,3 +21,7 @@ argocd: ctx
 clean: ctx
 	kubectl delete -f argocd-apps/production.yaml || true
 	kubectl delete -f argocd-apps/staging.yaml || true
+
+kube-diag:
+	kustomize build overlays/production | docker run -v "$$(pwd)":/work -i philippemerle/kubediagrams kube-diagrams -o docs/diag_prod.png -
+	kustomize build overlays/staging | docker run -v "$$(pwd)":/work -i philippemerle/kubediagrams kube-diagrams -o docs/diag_stage.png -
